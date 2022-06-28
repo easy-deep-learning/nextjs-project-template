@@ -5,13 +5,13 @@ import '../styles/globals.css'
 
 /**
  * @see https://nextjs.org/docs/advanced-features/custom-app
- * @param Component
- * @param pageProps
- * @constructor
  */
-function MyApp ({ Component, pageProps }: AppProps) {
+function MyApp ({
+  Component,
+  pageProps: { session, ...pageProps }
+}: AppProps) {
   return (
-    <SessionProvider session={pageProps.session} refetchInterval={0}>
+    <SessionProvider session={session}>
       <Component {...pageProps} />
     </SessionProvider>
   )

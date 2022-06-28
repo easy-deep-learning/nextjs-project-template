@@ -1,5 +1,11 @@
-import { useSession } from 'next-auth/react'
+import {
+  signIn,
+  signOut,
+  useSession,
+} from 'next-auth/react'
 import React, { FC } from 'react'
+
+import { UserLogin } from '../../components'
 
 type LayoutProps = {
   children: React.ReactNode
@@ -8,13 +14,16 @@ type LayoutProps = {
 export const LayoutWithAuth: FC<LayoutProps> = ({ children }) => {
   const { data: session, status } = useSession()
 
-  console.log('session: ', session) // eslint-disable-line
-  console.log('status: ', status) // eslint-disable-line
-
   return (
-    <>
+    <div>
+      <UserLogin
+        session={session}
+        status={status}
+        signOut={signOut}
+        signIn={signIn}
+      />
       <main>{children}</main>
-    </>
+    </div>
   )
 }
 

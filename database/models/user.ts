@@ -1,15 +1,14 @@
 import mongoose from 'mongoose'
 
+/**
+ * @see https://next-auth.js.org/adapters/mongodb
+ */
 const Schema = new mongoose.Schema({
-  groups: Array,
-  profile: {
-    email: String,
-    first_name: String,
-    last_name: String,
-    username: String,
-    photo_url: String,
-    created_at: String,
-  },
+  _id: mongoose.Types.ObjectId,
+  name: String,
+  email: String,
+  image: String,
+  emailVerified: Boolean
 })
 
 const UserModel = mongoose.models.User || mongoose.model('User', Schema)

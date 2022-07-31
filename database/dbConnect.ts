@@ -1,16 +1,10 @@
 import mongoose, { ConnectOptions } from 'mongoose'
 
-const { MONGODB_URI = '', MONGODB_DB } = process.env
+const { MONGODB_URI = '' } = process.env
 
 if (MONGODB_URI === '') {
   throw new Error(
     'Please define the MONGODB_URI environment variable',
-  )
-}
-
-if (!MONGODB_DB) {
-  throw new Error(
-    'Please define the MONGODB_DB environment variable',
   )
 }
 
@@ -24,7 +18,9 @@ if (!MONGODB_DB) {
  * during API Route usage.
  * @todo: types
  */
-let cached: { promise: Promise<any> | null, connection: any } = { connection: null, promise: null }
+type MongoConnectionsCached = { connection: any; promise: Promise<void | typeof mongoose> | null }
+
+let cached: MongoConnectionsCached = { connection: null, promise: null }
 
 export default async function dbConnect () {
   if (cached.connection) {
@@ -44,6 +40,7 @@ export default async function dbConnect () {
       .then((mongoose) => mongoose)
       .catch((error) => console.error(error))
   }
+
   cached.connection = await cached.promise
   return cached.connection
 }

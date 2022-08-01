@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 
 const Schema = new mongoose.Schema({
+  _id: mongoose.Types.ObjectId,
   author: mongoose.Types.ObjectId,
   created_at: Date,
   updated_at: Date,
@@ -8,6 +9,6 @@ const Schema = new mongoose.Schema({
   text: String,
 })
 
-const TemplateCRUDModel = mongoose.models.TemplateCRUDModel || mongoose.model('TemplateCRUD', Schema)
+const TemplateCRUDModel = mongoose.models.TemplateCRUD || mongoose.model('TemplateCRUD', Schema)
 
 export default TemplateCRUDModel

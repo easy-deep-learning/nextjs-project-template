@@ -9,8 +9,11 @@ import {
   dbConnect,
 } from '../../../database'
 
+/**
+ * @todo Fix type
+ */
 type Data = {
-  name: string
+  data: unknown
 }
 
 export default async function handler (

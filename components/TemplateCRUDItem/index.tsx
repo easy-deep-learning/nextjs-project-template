@@ -1,2 +1,3 @@
 export { TemplateCRUDItem } from './TemplateCRUDItem'
-export type { TemplateCRUDItemProps } from './TemplateCRUDItem'
+export { TemplateCRUDItemForm } from './TemplateCRUDItemForm'
+export type { TemplateCRUDItemProps } from './TemplateCRUDItemTypes'

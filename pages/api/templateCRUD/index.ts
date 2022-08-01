@@ -5,7 +5,7 @@ import type {
 } from 'next'
 
 import {
-  UserModel,
+  templateCRUD,
   dbConnect,
 } from '../../../database'
 
@@ -19,8 +19,8 @@ export default async function handler (
 ) {
   await dbConnect()
 
-  const users = await UserModel.find()
+  const itemsList = await templateCRUD.find()
 
   res.status(200)
-    .json({ data: users })
+    .json({ data: itemsList })
 }

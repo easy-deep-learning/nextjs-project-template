@@ -23,8 +23,19 @@ export default async function handler (
 ) {
   await dbConnect()
 
-  const itemsList = await templateCRUD.find()
-
-  res.status(200)
-    .json({ data: itemsList })
+  switch (req.method) {
+    case 'GET':
+      const itemsList = await templateCRUD.find()
+      res.status(200)
+        .json({ data: itemsList })
+      break
+    case 'POST':
+      const data = req.body
+      console.log("data: ", data); // eslint-disable-line
+      res.status(200)
+        .json({ data: data })
+      break
+    default:
+      res.status(501) // Not Implemented
+  }
 }

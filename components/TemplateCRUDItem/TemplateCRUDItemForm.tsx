@@ -8,12 +8,13 @@ import {
 
 import { TemplateCRUDItemProps } from './TemplateCRUDItemTypes'
 
-export type TemplateCRUDItemFormProps = Partial<TemplateCRUDItemProps>
+export type TemplateCRUDItemFormProps = Partial<TemplateCRUDItemProps> & { onSave: (values: Partial<TemplateCRUDItemProps>) => void }
 
-const TemplateCRUDItemForm: NextPage<TemplateCRUDItemFormProps> = ({ _id, title, text, author, created_at, updated_at }) => {
+const TemplateCRUDItemForm: NextPage<TemplateCRUDItemFormProps> = ({ _id, title, text, author, created_at, updated_at, onSave }) => {
 
   const onFinish = (values: any) => {
     console.log('Success:', values);
+    onSave(values)
   };
 
   const onFinishFailed = (errorInfo: any) => {

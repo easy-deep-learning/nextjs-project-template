@@ -8,6 +8,6 @@ const Schema = new mongoose.Schema({
   text: String,
 })
 
-const TemplateCRUDModel = mongoose.models.AccountModel || mongoose.model('TemplateCRUD', Schema)
+const TemplateCRUDModel = mongoose.models.TemplateCRUDModel || mongoose.model('TemplateCRUD', Schema)
 
 export default TemplateCRUDModel

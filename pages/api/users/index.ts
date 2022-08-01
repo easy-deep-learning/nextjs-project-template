@@ -9,8 +9,11 @@ import {
   dbConnect,
 } from '../../../database'
 
+/**
+ * @todo Fix type
+ */
 type Data = {
-  name: string
+  data: unknown
 }
 
 export default async function handler (
@@ -22,5 +25,5 @@ export default async function handler (
   const users = await UserModel.find()
 
   res.status(200)
-    .json({ users })
+    .json({ data: users })
 }

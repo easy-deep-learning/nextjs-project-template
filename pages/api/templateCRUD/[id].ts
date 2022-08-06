@@ -4,7 +4,7 @@ import type {
 } from 'next'
 
 import {
-  templateCRUDModel,
+  TemplateCRUDModel,
   SessionModel,
   dbConnect,
 } from '../../../database'
@@ -28,7 +28,7 @@ export default async function handler (
   switch (req.method) {
     // Read one
     case 'GET':
-      const item = await templateCRUDModel.findOne({ id: query.id})
+      const item = await TemplateCRUDModel.findOne({ id: query.id})
       res.status(200)
         .json({ data: item })
       break
@@ -40,7 +40,7 @@ export default async function handler (
           .json({ error: { message: 'you need to authenticate before' } })
         return
       }
-      const doc = await templateCRUDModel.findOneAndUpdate({_id: data._id}, data).lean()
+      const doc = await TemplateCRUDModel.findOneAndUpdate({_id: data._id}, data).lean()
       res.status(200)
         .json({ data: doc })
       break
@@ -52,7 +52,7 @@ export default async function handler (
           .json({ error: { message: 'you need to authenticate before' } })
         return
       }
-      await templateCRUDModel.deleteOne({_id: data._id})
+      await TemplateCRUDModel.deleteOne({_id: data._id})
       res.status(204)
       break
     default:

@@ -1,3 +1,3 @@
 export { UserLogin } from './UserLogin'
-export { TemplateCRUDItem } from './TemplateCRUDItem'
+export { TemplateCRUDItem, TemplateCRUDItemForm } from './TemplateCRUDItem'
 export { TemplateCRUDList } from './TemplateCRUDList'

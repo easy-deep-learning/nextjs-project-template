@@ -1,4 +1,3 @@
-import mongoose from 'mongoose'
 import type { NextPage } from 'next'
 import {
   Form,
@@ -10,7 +9,7 @@ import { TemplateCRUDItemProps } from './TemplateCRUDItemTypes'
 
 export type TemplateCRUDItemFormProps = Partial<TemplateCRUDItemProps> & { onSave: (values: Partial<TemplateCRUDItemProps>) => void }
 
-const TemplateCRUDItemForm: NextPage<TemplateCRUDItemFormProps> = ({ _id, title, text, author, created_at, updated_at, onSave }) => {
+const TemplateCRUDItemForm: NextPage<TemplateCRUDItemFormProps> = ({ _id, title, text, created_at, updated_at, onSave }) => {
 
   const onFinish = (values: any) => {
     console.log('Success:', values);

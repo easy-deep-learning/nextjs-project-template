@@ -5,7 +5,7 @@ import type {
 } from 'next'
 
 import {
-  templateCRUDModel,
+  TemplateCRUDModel,
   SessionModel,
   dbConnect,
 } from '../../../database'
@@ -35,8 +35,7 @@ export default async function handler (
       }
 
       data.authorId = userId
-      const newDoc = await templateCRUDModel.create(data)
-      newDoc.save()
+      const newDoc = await TemplateCRUDModel.create(data)
 
       res.status(200)
         .json({ data: newDoc })
@@ -46,7 +45,7 @@ export default async function handler (
     case 'GET':
       // TODO: Can we use a Stream here?
       // TODO: support limit and skip
-      const itemsList = await templateCRUDModel.find()
+      const itemsList = await TemplateCRUDModel.find()
       res.status(200)
         .json({ data: itemsList })
       break

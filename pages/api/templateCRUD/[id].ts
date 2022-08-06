@@ -28,7 +28,7 @@ export default async function handler (
   switch (req.method) {
     // Read one
     case 'GET':
-      const item = await TemplateCRUDModel.findOne({ id: query.id})
+      const item = await TemplateCRUDModel.findById(query.id)
       res.status(200)
         .json({ data: item })
       break

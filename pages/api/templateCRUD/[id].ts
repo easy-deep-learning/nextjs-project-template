@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type {
   NextApiRequest,
   NextApiResponse,
@@ -12,7 +11,6 @@ import {
 
 import { Data } from '../types'
 
-
 export default async function handler (
   req: NextApiRequest,
   res: NextApiResponse<Data>,
@@ -21,34 +19,43 @@ export default async function handler (
 
   const sessionToken = req.cookies?.['next-auth.session-token']
 
+  const query = req.query
+
   const data = req.body || {}
   const session = await SessionModel.findOne({ sessionToken }).lean()
   const userId = session?.userId
 
   switch (req.method) {
-    // Create
-    case 'POST':
+    // Read one
+    case 'GET':
+      const item = await templateCRUDModel.findOne({ id: query.id})
+      res.status(200)
+        .json({ data: item })
+      break
+
+    // Update one
+    case 'PATCH':
       if (!userId) {
         res.status(401)
           .json({ error: { message: 'you need to authenticate before' } })
         return
       }
-
-      data.authorId = userId
-      const newDoc = await templateCRUDModel.create(data)
-      newDoc.save()
-
+      const doc = await templateCRUDModel.findOneAndUpdate({_id: data._id}, data).lean()
       res.status(200)
-        .json({ data: newDoc })
+        .json({ data: doc })
       break
 
-    // Read all
-    case 'GET':
-      // TODO: Can we use a Stream here?
-      // TODO: support limit and skip
-      const itemsList = await templateCRUDModel.find()
-      res.status(200)
-        .json({ data: itemsList })
+    // Delete one
+    case 'DELETE':
+      if (!userId) {
+        res.status(401)
+          .json({ error: { message: 'you need to authenticate before' } })
+        return
+      }
+      await templateCRUDModel.deleteOne({_id: data._id})
+      res.status(204)
       break
+    default:
+      res.status(501) // Not Implemented
   }
 }

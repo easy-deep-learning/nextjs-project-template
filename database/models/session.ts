@@ -10,6 +10,6 @@ const Schema = new mongoose.Schema({
   expires: Date
 })
 
-const SessionModel = mongoose.models.SessionModel || mongoose.model('Session', Schema)
+const SessionModel = mongoose.models.Session || mongoose.model('Session', Schema)
 
 export default SessionModel

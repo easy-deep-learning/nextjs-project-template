@@ -12,7 +12,7 @@ const TemplateCRUD: NextPage = () => {
   const { id } = router.query
 
   React.useEffect(() => {
-    if (id?.length > 0) {
+    if (id && id.length > 0) {
       fetch(`/api/templateCRUD/${id}`)
         .then(response => response.json())
         .then(result => setTemplateCRUDItem(result.data))
@@ -28,7 +28,7 @@ const TemplateCRUD: NextPage = () => {
       <Head>
         <title>TemplateCRUD</title>
       </Head>
-      <TemplateCRUDItem {...templateCRUDItem} />
+      {templateCRUDItem && <TemplateCRUDItem {...templateCRUDItem} />}
     </div>
 
   )

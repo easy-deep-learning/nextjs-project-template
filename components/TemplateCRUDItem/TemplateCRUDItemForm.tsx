@@ -12,20 +12,34 @@ export type TemplateCRUDItemFormProps = Partial<TemplateCRUDItemProps> & { onSav
 const TemplateCRUDItemForm: NextPage<TemplateCRUDItemFormProps> = ({ _id, title, text, created_at, updated_at, onSave }) => {
 
   const onFinish = (values: any) => {
-    console.log('Success:', values);
+    console.log('Success:', values)
+    if (_id) {
+      values._id = _id
+    }
     onSave(values)
-  };
+  }
 
   const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
+    console.log('Failed:', errorInfo)
+  }
+
+  console.log('title: ', title) // eslint-disable-line
 
   return (
     <Form
       name="basic"
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
-      initialValues={{ remember: true }}
+      fields={[
+        {
+          name: ['title'],
+          value: title,
+        },
+        {
+          name: ['text'],
+          value: text,
+        },
+      ]}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"

@@ -4,7 +4,7 @@ import Head from 'next/head'
 
 import { TemplateCRUDItemForm } from '../../components'
 
-const TemplateCRUD: NextPage = () => {
+const TemplateCRUDNew: NextPage = () => {
 
   const onSave = (values: unknown) => {
     console.log('values: ', values) // eslint-disable-line
@@ -35,4 +35,4 @@ const TemplateCRUD: NextPage = () => {
   )
 }
 
-export default TemplateCRUD
+export default TemplateCRUDNew

@@ -48,11 +48,11 @@ export default async function handler (
     // Delete one
     case 'DELETE':
       if (!userId) {
-        res.status(401)
+        res.status(200)
           .json({ error: { message: 'you need to authenticate before' } })
         return
       }
-      await TemplateCRUDModel.deleteOne({_id: data._id})
+      await TemplateCRUDModel.deleteOne({_id: query.id})
       res.status(204)
       break
     default:

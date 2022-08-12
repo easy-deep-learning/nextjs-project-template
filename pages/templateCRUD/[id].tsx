@@ -2,6 +2,7 @@ import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import 'antd/dist/antd.css'
 
 import { TemplateCRUDItem, TemplateCRUDItemProps } from '../../components'
 

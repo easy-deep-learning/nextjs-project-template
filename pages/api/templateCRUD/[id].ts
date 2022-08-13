@@ -53,7 +53,7 @@ export default async function handler (
         return
       }
       await TemplateCRUDModel.deleteOne({_id: query.id})
-      res.status(204)
+      res.status(204).end()
       break
     default:
       res.status(501) // Not Implemented

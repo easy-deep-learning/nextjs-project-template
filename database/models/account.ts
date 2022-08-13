@@ -13,6 +13,6 @@ const Schema = new mongoose.Schema({
   userId: mongoose.Types.ObjectId
 })
 
-const AccountModel = mongoose.models.AccountModel || mongoose.model('Account', Schema)
+const AccountModel = mongoose.models.Account || mongoose.model('Account', Schema)
 
 export default AccountModel

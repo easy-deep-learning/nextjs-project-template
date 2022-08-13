@@ -1,22 +1,10 @@
 import React from 'react'
-import 'antd/dist/antd.css'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { TemplateCRUDList } from '../../components'
+import { TemplateCRUDItemForm } from '../../components'
 
-const TemplateCRUD: NextPage = () => {
-  const [templateCRUDList, setTemplateCRUDList] = React.useState([])
-
-  React.useEffect(() => {
-    fetch('/api/templateCRUD')
-      .then(response => response.json())
-      .then(result => setTemplateCRUDList(result.data))
-      .catch(error => {
-        console.error(error)
-      })
-
-  }, [])
+const TemplateCRUDNew: NextPage = () => {
 
   const onSave = (values: unknown) => {
     console.log('values: ', values) // eslint-disable-line
@@ -41,10 +29,10 @@ const TemplateCRUD: NextPage = () => {
       <Head>
         <title>TemplateCRUD</title>
       </Head>
-      <TemplateCRUDList items={templateCRUDList} onSave={onSave} />
+      <TemplateCRUDItemForm  onSave={onSave} />
     </div>
 
   )
 }
 
-export default TemplateCRUD
+export default TemplateCRUDNew
